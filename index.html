@@ -7,7 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playpen+Sans&family=Roboto:wght@400&display=swap');
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Playpen Sans', cursive, 'Roboto', sans-serif;
             background-color: black;
             display: flex;
             justify-content: center;
@@ -26,33 +26,34 @@
         }
         .container {
             text-align: center;
+            max-width: 80%;
         }
         .message {
-            font-size: 48px;
+            font-size: 2vw;
             color: white;
             margin-bottom: 20px;
-            white-space: nowrap;
+            white-space: normal; /* Allow text to wrap */
             overflow: hidden;
             border-right: 3px solid transparent;
-            animation: typing 3s steps(40, end), blink-caret 0.5s step-end infinite;
-            font-family: 'Playpen Sans', cursive;
-font-family: 'Roboto', sans-serif;
+            animation: typing 6s steps(60, end), blink-caret 0.5s step-end infinite;
+            max-width: 100%;
         }
         .smiley {
-            display: none; /* Initially hide the smiley */
-            font-size: 48px;
+            display: none;
+            font-size: 20vw;
+            max-width: 100%;
+            height: auto;
             animation: bounce 2s infinite;
         }
         .cheese-message {
-            font-size: 48px;
+            font-size: 2vw;
             color: gold;
             white-space: nowrap;
             overflow: hidden;
             border-right: 3px solid transparent;
             animation: typing-cheese 3s steps(10, end), blink-caret-cheese 0.5s step-end infinite;
             display: none;
-            font-family: 'Playpen Sans', cursive;
-            font-family: 'Roboto', sans-serif;
+            max-width: 100%;
         }
         @keyframes typing {
             from {
@@ -97,6 +98,20 @@ font-family: 'Roboto', sans-serif;
                 transform: translateY(-10px);
             }
         }
+
+        /* Make the font smaller for smaller screens */
+        @media (max-width: 768px) {
+            .message, .cheese-message {
+                font-size: 8vw;
+                animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
+            }
+            .message {
+                white-space: normal; /* Allow text to wrap */
+            }
+            .smiley {
+                font-size: 15vw;
+            }
+        }
     </style>
 </head>
 <body>
@@ -119,8 +134,8 @@ font-family: 'Roboto', sans-serif;
                 index++;
                 setTimeout(typeText, 50);
             } else {
-                smiley.style.display = 'inline'; // Show the smiley after text animation
-                cheeseMessage.style.display = 'block'; // Display the "Say cheese" text
+                smiley.style.display = 'inline';
+                cheeseMessage.style.display = 'block';
                 typeCheeseText();
             }
         }
